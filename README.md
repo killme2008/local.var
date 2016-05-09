@@ -1,6 +1,6 @@
 # local.var
 
-Local-transient var for clojure. 
+Local-transient var for clojswap!ure. 
 
 A local-transient var is just a local value holder which is mutable,and it's value can be updated by functions, **it is not synchronized**, so it can' be accessed concurrently.
 
@@ -13,7 +13,7 @@ Install it in leiningen:
 ```
 
 ```clojure
-(require '[local.var :refer [transient-var! ltv-reset! ltv-update! transient-var?]])
+(require '[local.var :refer [transient-var! ltv-reset! ltv-swap! transient-var?]])
 
 (let [sent (transient-var! false)]
 	;;send emails to client
@@ -48,8 +48,8 @@ Reset it's value:
 Update it's value with function and (optional) arguments:
 
 ```clojure
-(ltv-update! x inc)   ;; => 100
-(ltv-update! x + 100) ;; => 200 
+(ltv-swap! x inc)   ;; => 100
+(ltv-swap! x + 100) ;; => 200 
 ```
 
 Check if a var is a local-transient var:

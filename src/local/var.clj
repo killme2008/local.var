@@ -25,7 +25,7 @@
   (setValue! ltv newval)
   newval)
 
-(defn ltv-update!
+(defn ltv-swap!
   "'Updates' a value in a local-transient var, where f is
   a function that will take the old value
   and any supplied args and return the new value, Then returns a new

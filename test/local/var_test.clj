@@ -7,15 +7,15 @@
     (let [x (transient-var! 1)]
       (is (= 1 @x))
       (is (= 1 (deref x)))
-      (is (= 2 (ltv-update! x inc)))
+      (is (= 2 (ltv-swap! x inc)))
       (is (= 2 @x))
-      (is (= 3 (ltv-update! x inc)))
+      (is (= 3 (ltv-swap! x inc)))
       (is (= 3 @x))
-      (is (= 13 (ltv-update! x + 10)))
+      (is (= 13 (ltv-swap! x + 10)))
       (is (= 13 @x))
-      (is (= 34 (ltv-update! x + 10 11)))
+      (is (= 34 (ltv-swap! x + 10 11)))
       (is (= 34 @x))
-      (is (= 80 (ltv-update! x + 10 11 12 13)))
+      (is (= 80 (ltv-swap! x + 10 11 12 13)))
       (is (= 80 @x))
       (ltv-reset! x 100)
       (is (= 100 @x))
@@ -24,7 +24,7 @@
       (is (transient-var? x))
       (is (instance? IllegalAccessError
                      (deref
-                      (future (try (ltv-update! x inc)
+                      (future (try (ltv-swap! x inc)
                                    (catch Throwable t
                                      t))))))
       (is (instance? IllegalAccessError
